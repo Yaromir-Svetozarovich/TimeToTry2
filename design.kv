@@ -1,0 +1,75 @@
+#<KvLang>
+<Norm@Button>:
+    font_size: '26sp'
+    size_hint:.85, .85
+<ITEMS@Label>:
+    font_size: '25sp'
+    size_hint:.5, .25
+    italic: True
+<MainWidget>:
+    task_input:task_input
+    end_btn:end_btn
+    disable_btn:disable_btn
+    new_tasks_btn:new_tasks_btn
+    outputcontent:outputcontent
+    labeltask:labeltask
+    orientation: 'vertical'
+    background_normal:(.5, .5, .5, .5)
+
+    Label:
+        id:labeltask
+        text:'Нет задач'
+        font_size: '40sp'
+        size_hint:1, .15
+    Label:
+        text: str(root.gethour())+":"+str(root.getminute())+":"+str(round(root.number))
+        #text: root.timetolabel()
+        font_size:'50sp'
+        size_hint:1, .2
+        bold:'true'
+
+    ListWidget:
+        viewclass: 'ITEMS'
+
+        orientation: 'vertical'
+        id:outputcontent
+        RecycleBoxLayout:
+            default_size: None, dp(56)
+            default_size_hint: 1, None
+            size_hint_y: None
+            height:self.minimum_height
+            multiselect: True
+            orientation: 'vertical'
+            halign:'left'
+            valign:'center'
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint:1,.1
+        TextInput:
+            id: task_input
+            multi_line: True
+            font_size: '32sp'
+            padding:[5,5,5,5]
+            spacing:5
+            background_color:(.2, .2, .2, .7)
+            foreground_color:(1, 1, 1, 1)
+    GridLayout:
+        cols:2
+        size_hint: 1, 0.10
+        BoxLayout:
+            orientation:'horizontal'
+            padding:[2,0,2,0]
+            spacing:2
+            Norm:
+                id: new_tasks_btn
+                text: 'Начать задачу'
+                on_press: root.forStartBtn()
+            Norm:
+                id: end_btn
+                text: 'Пауза'
+                on_press: root.stop()
+            Norm:
+                id:disable_btn
+                text: 'Завершить задачу'
+                on_press: root.forDisableBtn()
+#</KvLang>
